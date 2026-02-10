@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Princess ❤️</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: 'Georgia', serif;
+    }
+
+    body {
+        margin: 0;
+        background: radial-gradient(circle at top, #111, #000);
+        color: #f5f5f5;
+        overflow-x: hidden;
+    }
+
+    .section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        padding: 60px 20px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1.4s ease;
+    }
+
+    .section.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-weight: normal;
+        color: #ccc;
+        margin-bottom: 40px;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.05);
+        border-radius: 18px;
+        padding: 25px;
+        max-width: 320px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    img {
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 15px;
+    }
+
+    .caption {
+        font-size: 0.95rem;
+        color: #ddd;
+        font-style: italic;
+    }
+
+    .joke {
+        max-width: 600px;
+        font-size: 1.1rem;
+        color: #e0e0e0;
+        line-height: 1.8;
+    }
+
+    input {
+        padding: 14px;
+        font-size: 1rem;
+        border-radius: 10px;
+        border: none;
+        width: 280px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 28px;
+        border-radius: 25px;
+        border: none;
+        background: #ff4d6d;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #ff335c;
+    }
+
+    .error {
+        margin-top: 15px;
+        color: #ff6b6b;
+        display: none;
+    }
+
+    .final {
+        font-size: 3.2rem;
+        font-weight: bold;
+        color: #ff4d6d;
+        text-shadow: 0 0 25px rgba(255,77,109,0.6);
+    }
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="section show">
+    <h1>For My Princess ❤️</h1>
+    <h2>A little something, just for you</h2>
+</div>
+
+<!-- PHOTO 1 -->
+<div class="section">
+    <div class="card">
+        <img src="image1.jpg">
+        <div class="caption">
+            I love you a lot, my princess.
+        </div>
+    </div>
+</div>
+
+<!-- PHOTO 2 -->
+<div class="section">
+    <div class="card">
+        <img src="image2.jpg">
+        <div class="caption">
+            Every moment with you feels unreal — in the best way.
+        </div>
+    </div>
+</div>
+
+<!-- PHOTO 3 -->
+<div class="section">
+    <div class="card">
+        <img src="image3.jpg">
+        <div class="caption">
+            “rani teri ek jhalak se mai pagal”
+        </div>
+    </div>
+</div>
+
+<!-- PHOTO 4 -->
+<div class="section">
+    <div class="card">
+        <img src="image4.jpg">
+        <div class="caption">
+            Still can’t believe you’re mine.
+        </div>
+    </div>
+</div>
+
+<!-- INSIDE JOKES -->
+<div class="section">
+    <div class="joke">
+        You once said we breathe oxygen —  
+        and defended it with full confidence  
+        until I reminded you it’s actually air.
+        <br><br>
+        And somehow Kshatriya became <em>shatru</em>,  
+        which you again stood by like it was history.
+        <br><br>
+        These moments?  
+        Permanently stored in my heart, Daizy.
+    </div>
+</div>
+
+<!-- NAME UNLOCK -->
+<div class="section" id="unlockSection">
+    <h2>One last thing…</h2>
+    <p>Type the name of your future husband</p>
+
+    <input id="nameInput" placeholder="Type here">
+    <button onclick="checkName()">Continue</button>
+
+    <div class="error" id="errorMsg">
+        That’s not it… try again 😉
+    </div>
+</div>
+
+<!-- FINAL -->
+<div class="section" id="finalSection">
+    <div class="final">
+        Will you be my Valentine? ❤️
+    </div>
+</div>
+
+<script>
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => observer.observe(section));
+
+    function normalize(text) {
+        return text.toLowerCase().replace(/\s+/g, ' ').trim();
+    }
+
+    function checkName() {
+        const input = normalize(document.getElementById('nameInput').value);
+        const correct = normalize("Aradhyea Sharma");
+
+        if (input === correct) {
+            document.getElementById('finalSection').classList.add('show');
+            document.getElementById('finalSection').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
